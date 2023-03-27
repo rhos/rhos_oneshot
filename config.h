@@ -11,7 +11,7 @@
 //#define TAPPING_FORCE_HOLD
 
 // Auto Shift
-// #define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 #define AUTO_SHIFT_NO_SETUP
 
 // Mouse key speed and acceleration.

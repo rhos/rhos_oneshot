@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include QMK_KEYBOARD_H
 
 #include "layout.h"
@@ -127,6 +126,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 // process key presses
 
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     dprintf("KEYCODE: pressed %d \n", keycode);
@@ -153,6 +154,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   OSMOD_LIST
   #undef OSMOD_X
 
+  switch (keycode) {
+  case U_SPCL:
+      if (record->event.pressed) {
+        bool shifted = get_mods() & MOD_MASK_SHIFT;
+        send_extra_grp_toggle();
+        if(shifted) {
+          unregister_code(KC_LSFT);
+          register_code(KC_ALGR);
+          tap_code(KC_8);
+          unregister_code(KC_ALGR);
+          register_code(KC_LSFT);
+        }
+        else {
+          register_code(KC_LSFT);
+          tap_code(KC_3);
+          unregister_code(KC_LSFT);
+        }
+        send_extra_grp_toggle();
+      } 
+      break;
+  }
   return true;
 };
 
