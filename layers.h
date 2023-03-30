@@ -33,8 +33,6 @@ OSMOD_LIST
 #define OSLAYER_X(OSLAYER) OSL_##OSLAYER,
 OSLAYER_LIST
 #undef OSLAYER_X
-
-    U_SPCL
 };
 
 enum tapdances {
@@ -123,7 +121,7 @@ enum tapdances {
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OS_ALGR , KC_0    , KC_4    , KC_5    , KC_6    , KC_EQL  ,           KC_EXLM , OS_LGUI , OS_LCTL , OS_LSFT , OS_LALT , KC_QUOT ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_COMM , KC_DOT  , KC_1    , KC_2    , KC_3    , KC_SCLN ,           KC_LBRC , KC_RBRC , KC_LT   , KC_GT   , KC_QUES , U_SPCL  ,  \
+      KC_COMM , KC_DOT  , KC_1    , KC_2    , KC_3    , KC_SCLN ,           KC_LBRC , KC_RBRC , KC_LT   , KC_GT   , KC_QUES , KC_NUBS ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_TRNS , KC_TRNS , KC_TRNS ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */

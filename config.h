@@ -31,3 +31,5 @@
 
 // #define DEBUG_MATRIX_SCAN_RATE
 
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+#define OLED_BRIGHTNESS 0
