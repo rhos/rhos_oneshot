@@ -4,10 +4,9 @@
 LAYER_X(BASE,   "Base") \
 LAYER_X(EXTRA,  "Extra") \
 LAYER_X(LEFT,   "Left") \
-LAYER_X(GMBS,   "Game") \
+LAYER_X(GAME,   "Game") \
 LAYER_X(TRN,    "Trn") \
 LAYER_X(NUM,    "Num") \
-LAYER_X(GMSC,   "Game2") \
 LAYER_X(NAV,    "Nav") \
 LAYER_X(FUN,    "Fun") 
 
@@ -51,9 +50,7 @@ enum tapdances {
 #define D_EXTRA DF(U_EXTRA)
 #define D_BASE  DF(U_BASE)
 #define D_LEFT  DF(U_LEFT)
-#define D_GMBS  DF(U_GMBS)
-
-#define M_GMSC  MO(U_GMSC)
+#define D_GAME  DF(U_GAME)
 
 #define U_WSBF  G(A(KC_Q))
 #define U_SRCH  G(A(KC_W))
@@ -62,88 +59,77 @@ enum tapdances {
 
 #define LAYER_BASE \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_GRV  , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_BSLS ,  \
+      OSL_TRN , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_BSLS ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OS_ALGR , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
+      OSL_NUM , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OSL_TRN , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , D_EXTRA ,  \
+      OS_ALGR , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , D_EXTRA ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_ESC  , OSL_NAV , KC_SPC  ,       OS_LSFT , OSL_NUM , OS_CNCL                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
 #define LAYER_EXTRA \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_GRV  , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_LBRC ,  \
+      OSL_TRN , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_LBRC ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_RBRC , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
+      OSL_NUM , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OSL_TRN , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , D_BASE  ,  \
+      OS_ALGR , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , D_BASE  ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_ESC  , OSL_NAV , KC_SPC  ,       OS_LSFT , OSL_NUM , OS_CNCL                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
 #define LAYER_LEFT \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_NO   , KC_DEL  , KC_TAB  , KC_UP   , KC_ENT  , KC_PGUP ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
+      OSL_TRN , KC_DEL  , KC_TAB  , KC_UP   , KC_ENT  , KC_PGUP ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       KC_NO   , KC_BSPC , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN ,           KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_BTN4 , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OSL_TRN , KC_NO   , KC_HOME , KC_SPC  , KC_END  , KC_NO   ,           KC_WH_L , KC_WH_D , KC_WH_U , KC_WH_R , KC_BTN5 , KC_NO   ,  \
+      KC_NO   , KC_NO   , KC_HOME , KC_SPC  , KC_END  , KC_NO   ,           KC_WH_L , KC_WH_D , KC_WH_U , KC_WH_R , KC_BTN5 , KC_NO   ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_ESC  , OSL_NAV , OSL_NUM ,       KC_BTN2 , KC_BTN1 , KC_BTN3                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
-#define LAYER_GMBS \
+#define LAYER_GAME \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_TAB  , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_LBRC ,  \
+      OSL_TRN , KC_Q    , KC_W    , KC_E    , KC_R    , KC_T    ,           KC_Y    , KC_U    , KC_I    , KC_O    , KC_P    , KC_LBRC ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_ENT  , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
+      OSL_NUM , KC_A    , KC_S    , KC_D    , KC_F    , KC_G    ,           KC_H    , KC_J    , KC_K    , KC_L    , KC_SCLN , KC_QUOT ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OSL_TRN , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , KC_NO   ,  \
+      KC_LSFT , KC_Z    , KC_X    , KC_C    , KC_V    , KC_B    ,           KC_N    , KC_M    , KC_COMM , KC_DOT  , KC_SLSH , KC_NO   ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      KC_ESC  , M_GMSC  , KC_SPC  ,       KC_NO   , KC_NO   , KC_NO                                      \
+                                      KC_ESC  , OSL_NAV , KC_SPC  ,       KC_NO   , KC_NO   , KC_NO                                      \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
 #define LAYER_TRN \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_NO   , KC_DEL  , KC_TAB  , KC_UP   , KC_ENT  , KC_PGUP ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , U_BOOT  ,  \
+      KC_TRNS , KC_DEL  , KC_TAB  , KC_UP   , KC_ENT  , KC_PGUP ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , U_BOOT  ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       KC_NO   , KC_BSPC , KC_LEFT , KC_DOWN , KC_RGHT , KC_PGDN ,           KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_BTN4 , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_TRNS , KC_NO   , KC_HOME , KC_SPC  , KC_END  , KC_NO   ,           KC_WH_L , KC_WH_D , KC_WH_U , KC_WH_R , KC_BTN5 , U_GRP   ,  \
+      KC_NO   , KC_NO   , KC_HOME , KC_SPC  , KC_END  , KC_NO   ,           KC_WH_L , KC_WH_D , KC_WH_U , KC_WH_R , KC_BTN5 , U_GRP   ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      D_LEFT  , D_BASE  , D_GMBS  ,       KC_BTN2 , KC_BTN1 , KC_BTN3                                    \
+                                      D_LEFT  , D_BASE  , D_GAME  ,       KC_BTN2 , KC_BTN1 , KC_BTN3                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
 #define LAYER_NUM \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_GRV  , KC_MINS , KC_7    , KC_8    , KC_9    , KC_SLSH ,           KC_LCBR , KC_RCBR , KC_LPRN , KC_RPRN , KC_UNDS , KC_BSLS ,  \
+      KC_NO   , KC_MINS , KC_7    , KC_8    , KC_9    , KC_GRV  ,           KC_LCBR , KC_RCBR , KC_LPRN , KC_RPRN , KC_UNDS , KC_BSLS ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OS_ALGR , KC_0    , KC_4    , KC_5    , KC_6    , KC_EQL  ,           KC_EXLM , OS_LGUI , OS_LCTL , OS_LSFT , OS_LALT , KC_QUOT ,  \
+      KC_TRNS , KC_0    , KC_4    , KC_5    , KC_6    , KC_EQL  ,           KC_EXLM , OS_LGUI , OS_LCTL , OS_LSFT , OS_LALT , KC_QUOT ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_COMM , KC_DOT  , KC_1    , KC_2    , KC_3    , KC_SCLN ,           KC_LBRC , KC_RBRC , KC_LT   , KC_GT   , KC_QUES , KC_NUBS ,  \
+      OS_ALGR , KC_DOT  , KC_1    , KC_2    , KC_3    , KC_SCLN ,           KC_LBRC , KC_RBRC , KC_LT   , KC_GT   , KC_QUES , KC_SLSH ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_TRNS , KC_TRNS , KC_TRNS ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 
-#define LAYER_GMSC \
-  /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      KC_LALT , KC_DEL  , KC_7    , KC_8    , KC_9    , KC_VOLU ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
-  /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_LSFT , KC_0    , KC_4    , KC_5    , KC_6    , KC_VOLD ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
-  /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_LCTL , KC_BSPC , KC_1    , KC_2    , KC_3    , KC_MUTE ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
-  /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      KC_TRNS , KC_TRNS , KC_TRNS ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
-  /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
- 
 #define LAYER_NAV \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
       KC_PSCR , U_SRCH  , U_WSBF  , U_SCRT  , U_LNCH  , KC_VOLU ,           KC_ESC  , KC_SPC  , KC_ENT  , KC_TAB  , KC_DEL  , CW_TOGG ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_NO   , OS_LALT , OS_LSFT , OS_LCTL , OS_LGUI , KC_VOLD ,           KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , KC_APP  ,  \
+      KC_TRNS , OS_LALT , OS_LSFT , OS_LCTL , OS_LGUI , KC_VOLD ,           KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , KC_APP  ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_NO   , U_UNDO  , U_CUT   , U_COPY  , U_PSTE  , KC_MUTE ,           KC_HOME , KC_PGDN , KC_PGUP , KC_END  , KC_INS  , KC_NO   ,  \
+      KC_NO   , U_UNDO  , U_CUT   , U_COPY  , U_PSTE  , KC_MUTE ,           KC_HOME , KC_PGDN , KC_PGUP , KC_END  , KC_INS  , KC_CAPS ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_TRNS , KC_TRNS , KC_TRNS ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
@@ -152,7 +138,7 @@ enum tapdances {
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
       KC_NO   , KC_F12  , KC_F7   , KC_F8   , KC_F9   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      KC_NO   , KC_F11  , KC_F4   , KC_F5   , KC_F6   , KC_NO   ,           KC_NO   , OS_LGUI , OS_LCTL , OS_LSFT , OS_LALT , KC_NO   ,  \
+      KC_TRNS , KC_F11  , KC_F4   , KC_F5   , KC_F6   , KC_NO   ,           KC_NO   , OS_LGUI , OS_LCTL , OS_LSFT , OS_LALT , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       KC_NO   , KC_F10  , KC_F1   , KC_F2   , KC_F3   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\

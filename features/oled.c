@@ -43,7 +43,7 @@ void oled_render_layer_state(void) {
       case U_LEFT:
         oled_write_raw_P(raw_left, sizeof(raw_left));
         break;
-      case U_GMBS:
+      case U_GAME:
         oled_write_raw_P(raw_gmbs, sizeof(raw_gmbs));
         break;
       default:

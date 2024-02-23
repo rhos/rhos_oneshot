@@ -24,21 +24,17 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 // overrides
-
-const key_override_t capsword_key_override = ko_make_basic(MOD_MASK_SHIFT, CW_TOGG, KC_CAPS);
-// const key_override_t hsign_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_M, KC_RBRC, (1 << U_EXTRA));
-// const key_override_t hsign_override = ko_make_with_layers(MOD_BIT(KC_LSFT), KC_M, KC_RBRC, (1 << U_EXTRA));
-// const key_override_t ee_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_T, KC_GRV, (1 << U_EXTRA));
-// const key_override_t dotcomm_override = ko_make_with_layers(MOD_BIT(KC_LSFT), KC_DOT, KC_COMM, (1 << U_BASE));
+const key_override_t hsign_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_M, KC_RBRC, (1 << U_EXTRA));
+const key_override_t ee_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_T, KC_GRV, (1 << U_EXTRA));
+const key_override_t dotcomm_override = ko_make_with_layers(MOD_BIT(KC_LSFT), KC_DOT, KC_COMM, (1 << U_NUM));
 const key_override_t media_up = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_MPRV);
 const key_override_t media_center = ko_make_basic(MOD_MASK_SHIFT, KC_MUTE, KC_MPLY);
 const key_override_t media_down = ko_make_basic(MOD_MASK_SHIFT, KC_VOLD, KC_MNXT);
 
 const key_override_t **key_overrides = (const key_override_t *[]){
-    &capsword_key_override,
-    // &hsign_override,
-    // &ee_override,
-    // &dotcomm_override,
+    &hsign_override,
+    &ee_override,
+    &dotcomm_override,
     &media_up,
     &media_center,
     &media_down,
