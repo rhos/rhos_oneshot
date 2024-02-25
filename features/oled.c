@@ -40,7 +40,7 @@ void oled_render_layer_state(void) {
       case U_EXTRA:
         oled_write_raw_P(raw_extra, sizeof(raw_extra));
         break;
-      case U_LEFT:
+      case U_LFT:
         oled_write_raw_P(raw_left, sizeof(raw_left));
         break;
       case U_GAME:

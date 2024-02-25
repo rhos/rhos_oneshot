@@ -11,8 +11,8 @@
 //#define TAPPING_FORCE_HOLD
 
 // Auto Shift
-#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
-#define AUTO_SHIFT_NO_SETUP
+//#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
+//#define AUTO_SHIFT_NO_SETUP
 
 // Mouse key speed and acceleration.
 #undef MOUSEKEY_DELAY
@@ -29,7 +29,7 @@
 // #define COMBO_COUNT 1
 // #define COMBO_TERM 40
 
-// #define DEBUG_MATRIX_SCAN_RATE
+#define DEBUG_MATRIX_SCAN_RATE
 
-#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
+// #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
 #define OLED_BRIGHTNESS 0

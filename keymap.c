@@ -3,25 +3,7 @@
 #include "layout.h"
 #include "features/oneshot.h"
 #include "features/grp_toggle.h"
-
-// prevent accidental boot activation
-
-void u_td_fn_boot(tap_dance_state_t *state, void *user_data) { \
-  if (state->count == 2) {
-    reset_keyboard();
-  }
-}
-
-void u_td_fn_grp(tap_dance_state_t *state, void *user_data) { \
-  if (state->count == 2) {
-    send_extra_grp_toggle();
-  }
-}
-
-tap_dance_action_t tap_dance_actions[] = {
-    [U_TD_BOOT] = ACTION_TAP_DANCE_FN(u_td_fn_boot),
-    [U_TD_GRP] = ACTION_TAP_DANCE_FN(u_td_fn_grp)
-};
+#include "features/swapper.h"
 
 // overrides
 const key_override_t hsign_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_M, KC_RBRC, (1 << U_EXTRA));
@@ -54,7 +36,7 @@ LAYER_LIST
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
-    #define OSLAYER_X(OSLAYER) case OSL_##OSLAYER:
+    #define OSLAYER_X(OSKEY, OSLAYER) case OSL_##OSKEY:
     OSLAYER_LIST
     #undef OSLAYER_X
     case OS_CNCL:
@@ -66,7 +48,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-    #define OSLAYER_X(OSLAYER) case OSL_##OSLAYER:
+    #define OSLAYER_X(OSKEY, OSLAYER) case OSL_##OSKEY:
     OSLAYER_LIST
     #undef OSLAYER_X
 
@@ -82,7 +64,7 @@ bool is_oneshot_ignored_key(uint16_t keycode) {
 bool is_oneshot_layer_cancel_key(uint16_t keycode)
 {
   switch (keycode) {
-  #define OSLAYER_X(OSLAYER) case OSL_##OSLAYER:
+  #define OSLAYER_X(OSKEY, OSLAYER) case OSL_##OSKEY:
   OSLAYER_LIST
   #undef OSLAYER_X
   case OS_CNCL:
@@ -103,9 +85,15 @@ bool is_oneshot_layer_ignored_key(uint16_t keycode)
 OSMOD_LIST
 #undef OSMOD_X
 
-#define OSLAYER_X(OSLAYER) oneshot_key_t os_##OSLAYER##_key = {os_up_unqueued, 0};
+#define OSLAYER_X(OSKEY, OSLAYER) oneshot_key_t os_##OSKEY##_key = {os_up_unqueued, 0};
 OSLAYER_LIST
 #undef OSLAYER_X
+
+// swappers
+
+bool sw_alt_active = false;
+bool sw_ctrl_active = false;
+bool sw_gui_active = false;
 
 // layer change
 
@@ -131,7 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
 
   if( 
-  #define OSLAYER_X(OSLAYER) update_oneshot_layer(&os_##OSLAYER##_key, U_##OSLAYER, OSL_##OSLAYER, keycode, record) |
+  #define OSLAYER_X(OSKEY, OSLAYER) update_oneshot_layer(&os_##OSKEY##_key, U_##OSLAYER, OSL_##OSKEY, keycode, record) |
   OSLAYER_LIST
   #undef OSLAYER_X
     false)
@@ -148,51 +136,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   OSMOD_LIST
   #undef OSMOD_X
 
+  if (keycode != OS_LSFT)
+  {
+  update_swapper(
+    &sw_alt_active, KC_LALT, KC_TAB, SW_ALT,
+    keycode, record
+  );
+  update_swapper(
+    &sw_ctrl_active, KC_LCTL, KC_TAB, SW_CTL,
+    keycode, record
+  );
+  update_swapper(
+    &sw_gui_active, KC_LGUI, KC_TAB, SW_GUI,
+    keycode, record
+  );
+  } 
   return true;
 };
 
 // caps word settings
 
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
+// bool caps_word_press_user(uint16_t keycode) {
+//     switch (keycode) {
+//         // Keycodes that continue Caps Word, with shift applied.
+//         case KC_A ... KC_Z:
+//         case KC_MINS:
+//             add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+//             return true;
 
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-        #define OSLAYER_X(OSLAYER) case OSL_##OSLAYER:
-        OSLAYER_LIST
-        #undef OSLAYER_X
-        #define OSMOD_X(OSMOD) case OS_##OSMOD:
-        OSMOD_LIST
-        #undef OSMOD_X
-            return true;
+//         // Keycodes that continue Caps Word, without shifting.
+//         case KC_1 ... KC_0:
+//         case KC_BSPC:
+//         case KC_DEL:
+//         case KC_UNDS:
+//         #define OSLAYER_X(OSKEY, OSLAYER) case OSL_##OSKEY:
+//         OSLAYER_LIST
+//         #undef OSLAYER_X
+//         #define OSMOD_X(OSMOD) case OS_##OSMOD:
+//         OSMOD_LIST
+//         #undef OSMOD_X
+//             return true;
 
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
+//         default:
+//             return false;  // Deactivate Caps Word.
+//     }
+// }
 
 // auto shift keys
 
-bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
-  if(get_highest_layer(default_layer_state) != U_LEFT)
-    return false;
-
-  switch (keycode) {
-      case KC_1 ... KC_0:
-      case KC_MINUS ... KC_SLASH:
-      case KC_F1 ... KC_F12:
-          return true;
-  }
-  return false;
-}
+// bool get_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+//   if(os_NU2_key.oneshot_state == os_down_unused || os_NU2_key.oneshot_state == os_down_used)
+//   {
+//    switch (keycode) {
+//        case KC_1 ... KC_0:
+//        case KC_MINUS ... KC_SLASH:
+//        case KC_F1 ... KC_F12:
+//            return true;
+//    }
+//   }
+//   return false;
+// }
 
 //matrix scan
 
@@ -201,7 +204,7 @@ void matrix_scan_user(void) {
   OSMOD_LIST
   #undef OSMOD_X
 
-  #define OSLAYER_X(OSLAYER) scan_oneshot_layer(&os_##OSLAYER##_key, U_##OSLAYER, OSL_##OSLAYER);
+  #define OSLAYER_X(OSKEY, OSLAYER) scan_oneshot_layer(&os_##OSKEY##_key, U_##OSLAYER, OSL_##OSKEY);
   OSLAYER_LIST
   #undef OSLAYER_X
 }
@@ -209,8 +212,8 @@ void matrix_scan_user(void) {
 // debug
 
 void keyboard_post_init_user(void) {
-  // debug_enable=true;
-  // debug_matrix=true;
+  //debug_enable=true;
+  //debug_matrix=true;
   //adebug_keyboard=true;
   //debug_mouse=true;
 }
