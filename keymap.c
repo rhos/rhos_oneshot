@@ -128,6 +128,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // process key presses
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  #ifdef CONSOLE_ENABLE
+      const bool is_combo = record->event.type == COMBO_EVENT;
+      uprintf("0x%04X,%u,%u,%u,%b,0x%02X,0x%02X,%u\n",
+            keycode,
+            is_combo ? 254 : record->event.key.row,
+            is_combo ? 254 : record->event.key.col,
+            get_highest_layer(layer_state),
+            record->event.pressed,
+            get_mods(),
+            get_oneshot_mods(),
+            record->tap.count
+            );
+  #endif
+
+
   if (record->event.pressed) {
     dprintf("KEYCODE: pressed %d \n", keycode);
   }
@@ -176,10 +191,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       );
     }
   }
-  if (keycode != OS_LSFT)
-  {
-
-  } 
   return true;
 };
 

@@ -1,17 +1,30 @@
 #pragma once
 
 #define LAYER_LIST \
-LAYER_X(BASE,   "Base") \
-LAYER_X(EXTRA,  "Extra") \
-LAYER_X(GAME,   "Game") \
-LAYER_X(NUMB,   "NumB") \
-LAYER_X(FUNB,   "FunB") \
-LAYER_X(LFTB,   "LeftB") \
-LAYER_X(NAV,    "Nav") \
-LAYER_X(NUM,    "Num") \
-LAYER_X(FUN,    "Fun") \
-LAYER_X(LFT,    "Left") \
-LAYER_X(LCK,    "Lock")
+LAYER_X(BASE,   "BASE") \
+LAYER_X(EXTRA,  "EXTRA") \
+LAYER_X(GAME,   "GAME") \
+LAYER_X(NUMB,   "NUM") \
+LAYER_X(FUNB,   "FUN") \
+LAYER_X(LFTB,   "LEFT") \
+LAYER_X(NAV,    "NAV") \
+LAYER_X(NUM,    "NUM") \
+LAYER_X(FUN,    "FUN") \
+LAYER_X(LFT,    "LEFT") \
+LAYER_X(LCK,    "LOCK")
+
+//"BASE"     0!
+//"EXTRA"    1
+//"GAME"     2
+//"NUMB"     3
+//"FUNB"     4
+//"LFTB"     5
+//"NAV"      6!
+//"NUM"      7!
+//"FUN"      8
+//"LFT"      9
+//"LCK"      10
+
 
 #define OSMOD_LIST \
 OSMOD_X(LSFT) \
@@ -55,7 +68,8 @@ OSLAYER_LIST
 
 #define U_SRCH  G(A(KC_Q))
 #define U_SCRT  G(A(KC_W))
-#define U_LNCH  G(A(KC_G))
+#define U_SWTC  G(A(KC_Y))
+#define U_LNCH  G(A(KC_H))
 
 #define LAYER_BASE \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
@@ -92,7 +106,7 @@ OSLAYER_LIST
 
 #define LAYER_NAV \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      OSL_LFT , U_SRCH  , U_SCRT  , SW_ALT  , SW_CTL , SW_GUI  ,           KC_CAPS , KC_APP  , KC_ENT  , KC_TAB  , KC_DEL  , KC_VOLU ,  \
+      OSL_LFT , U_SRCH  , SW_ALT  , SW_CTL  , U_SWTC  , U_SCRT  ,           KC_CAPS , KC_APP  , KC_ENT  , KC_TAB  , KC_DEL  , KC_VOLU ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OSL_NUM , OS_LALT , OS_LSFT , OS_LCTL , OS_LGUI , U_LNCH  ,           KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , KC_VOLD ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
