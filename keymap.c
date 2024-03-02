@@ -8,7 +8,10 @@
 // overrides
 const key_override_t hsign_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_M, KC_RBRC, (1 << U_EXTRA));
 const key_override_t ee_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_T, KC_GRV, (1 << U_EXTRA));
+const key_override_t rub_override = ko_make_with_layers(MOD_BIT(KC_ALGR), KC_H, ALGR(KC_8), (1 << U_EXTRA));
+
 const key_override_t dotcomm_override = ko_make_with_layers(MOD_BIT(KC_LSFT), KC_DOT, KC_COMM, (1 << U_NUM));
+
 const key_override_t media_up = ko_make_basic(MOD_MASK_SHIFT, KC_VOLU, KC_MPRV);
 const key_override_t media_center = ko_make_basic(MOD_MASK_SHIFT, KC_MUTE, KC_MPLY);
 const key_override_t media_down = ko_make_basic(MOD_MASK_SHIFT, KC_VOLD, KC_MNXT);
@@ -16,7 +19,10 @@ const key_override_t media_down = ko_make_basic(MOD_MASK_SHIFT, KC_VOLD, KC_MNXT
 const key_override_t **key_overrides = (const key_override_t *[]){
     &hsign_override,
     &ee_override,
+    &rub_override,
+
     &dotcomm_override,
+
     &media_up,
     &media_center,
     &media_down,
@@ -93,7 +99,6 @@ OSLAYER_LIST
 
 bool sw_alt_active = false;
 bool sw_ctrl_active = false;
-bool sw_gui_active = false;
 
 // layer change
 
@@ -115,11 +120,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   {
     sw_ctrl_active = false;
     unregister_code(KC_LCTL);
-  }
-  if (sw_gui_active)
-  {
-    sw_gui_active = false;
-    unregister_code(KC_LGUI);
   }
 
   return update_tri_layer_state(state,  U_NAV, U_NUM, U_FUN);
@@ -183,10 +183,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       );
       update_swapper(
         &sw_ctrl_active, KC_LCTL, KC_TAB, SW_CTL,
-        keycode, record
-      );
-      update_swapper(
-        &sw_gui_active, KC_LGUI, KC_TAB, SW_GUI,
         keycode, record
       );
     }

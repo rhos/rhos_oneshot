@@ -43,7 +43,6 @@ enum keycodes {
     OS_CNCL = SAFE_RANGE,
     SW_ALT,
     SW_CTL,
-    SW_GUI,
 
 #define OSMOD_X(OSMOD) OS_##OSMOD,
 OSMOD_LIST
@@ -66,10 +65,10 @@ OSLAYER_LIST
 #define D_FUNB  DF(U_FUNB)
 #define D_LFTB  DF(U_LFTB)
 
-#define U_SRCH  G(A(KC_Q))
-#define U_SCRT  G(A(KC_W))
-#define U_SWTC  G(A(KC_Y))
-#define U_LNCH  G(A(KC_H))
+#define U_LNCH  G(A(KC_L))
+#define U_TERM  G(A(KC_T))
+#define U_SWTC  G(A(KC_S))
+#define U_FIND  G(A(KC_F))
 
 #define LAYER_BASE \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
@@ -106,7 +105,7 @@ OSLAYER_LIST
 
 #define LAYER_NAV \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      OSL_LFT , U_SRCH  , SW_ALT  , SW_CTL  , U_SWTC  , U_SCRT  ,           KC_CAPS , KC_APP  , KC_ENT  , KC_TAB  , KC_DEL  , KC_VOLU ,  \
+      OSL_LFT , U_FIND  , SW_ALT  , SW_CTL  , U_TERM  , U_SWTC  ,           KC_CAPS , KC_APP  , KC_ENT  , KC_TAB  , KC_DEL  , KC_VOLU ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OSL_NUM , OS_LALT , OS_LSFT , OS_LCTL , OS_LGUI , U_LNCH  ,           KC_LEFT , KC_DOWN , KC_UP   , KC_RGHT , KC_BSPC , KC_VOLD ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
@@ -156,12 +155,11 @@ OSLAYER_LIST
 
 #define LAYER_LCK \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
-      D_LFTB  , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
+      D_LFTB  , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , QK_RBT  ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      D_NUMB  , KC_NO   , KC_NO   , KC_NO   , D_FUNB  , D_GAME  ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
+      D_NUMB  , KC_NO   , D_GAME  , D_BASE  , D_FUNB  , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      OSL_LCK , KC_NO   , KC_NO   , KC_NO   , KC_NO   , D_BASE  ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
+      OSL_LCK , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , QK_BOOT ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
                                       KC_NO   , OSL_NAV , KC_NO   ,       KC_NO   , KC_NO   , KC_NO                                      \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
-
