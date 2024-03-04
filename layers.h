@@ -4,6 +4,7 @@
 LAYER_X(BASE,   "BASE") \
 LAYER_X(EXTRA,  "EXTRA") \
 LAYER_X(GAME,   "GAME") \
+LAYER_X(NAVB,   "NAV") \
 LAYER_X(NUMB,   "NUM") \
 LAYER_X(FUNB,   "FUN") \
 LAYER_X(LFTB,   "LEFT") \
@@ -61,6 +62,7 @@ OSLAYER_LIST
 #define D_EXTRA DF(U_EXTRA)
 #define D_BASE  DF(U_BASE)
 #define D_GAME  DF(U_GAME)
+#define D_NAVB  DF(U_NAVB)
 #define D_NUMB  DF(U_NUMB)
 #define D_FUNB  DF(U_FUNB)
 #define D_LFTB  DF(U_LFTB)
@@ -111,8 +113,10 @@ OSLAYER_LIST
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OSL_LCK , U_UNDO  , U_CUT   , U_COPY  , U_PSTE  , KC_PSCR ,           KC_HOME , KC_PGDN , KC_PGUP , KC_END  , KC_INS  , KC_MUTE ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      KC_ESC  , OSL_NAV , KC_SPC  ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
+                                      KC_ESC  , OSL_NAV , KC_SPC  ,       OS_LSFT , OSL_NUM , OS_CNCL                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
+#define LAYER_NAVB \
+    LAYER_NAV
 
 #define LAYER_NUM \
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
@@ -122,7 +126,7 @@ OSLAYER_LIST
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OS_ALGR , KC_DOT  , KC_1    , KC_2    , KC_3    , KC_SCLN ,           KC_LBRC , KC_RBRC , KC_LT   , KC_GT   , KC_QUES , KC_SLSH ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      KC_ESC  , OSL_NAV , KC_SPC  ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
+                                      KC_ESC  , OSL_NAV , KC_SPC  ,       OS_LSFT , OSL_NUM , OS_CNCL                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 #define LAYER_NUMB \
     LAYER_NUM
@@ -135,7 +139,7 @@ OSLAYER_LIST
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       KC_NO   , KC_F10  , KC_F1   , KC_F2   , KC_F3   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
-                                      KC_ESC  , OSL_NAV , KC_SPC  ,       KC_TRNS , KC_TRNS , KC_TRNS                                    \
+                                      KC_ESC  , OSL_NAV , KC_SPC  ,       OS_LSFT , OSL_NUM , OS_CNCL                                    \
   /*                                └─────────┴─────────┴─────────┘     └─────────┴─────────┴─────────┘                                */
 #define LAYER_FUNB \
     LAYER_FUN
@@ -157,7 +161,7 @@ OSLAYER_LIST
   /*┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐         ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐*/\
       D_LFTB  , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , QK_RBT  ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
-      D_NUMB  , KC_NO   , D_GAME  , D_BASE  , D_FUNB  , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
+      D_NUMB  , D_NAVB  , D_GAME  , D_BASE  , D_FUNB  , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,  \
   /*├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤         ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤*/\
       OSL_LCK , KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   ,           KC_NO   , KC_NO   , KC_NO   , KC_NO   , KC_NO   , QK_BOOT ,  \
   /*└─────────┴─────────┴─────────┴─┬───────┴─┬───────┴─┬───────┴─┐     ┌─┴───────┬─┴───────┬─┴───────┬─┴─────────┴─────────┴─────────┘*/\
