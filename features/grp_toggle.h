@@ -3,9 +3,16 @@
 #include QMK_KEYBOARD_H
 
 void send_extra_grp_toggle(void) {
-  register_code(KC_LGUI);
-  tap_code(KC_SPC);
-  unregister_code(KC_LGUI);
+  if (get_mods() & MOD_BIT (KC_LGUI))
+  {
+    tap_code(KC_SPC);
+  }
+  else
+  {
+    register_code(KC_LGUI);
+    tap_code(KC_SPC);
+    unregister_code(KC_LGUI);
+  }
 }
 
 static uint8_t in_extra_layer = 0;
