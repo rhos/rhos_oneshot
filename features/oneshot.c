@@ -4,7 +4,8 @@
 #include "timer.h"
 
 
-#define ONESHOT_TIMEOUT 500
+#define ONESHOT_ACTIVE_TIMEOUT 500
+#define ONESHOT_UNUSED_TIMEOUT 300
 
 void update_oneshot(
     oneshot_key_t* oskey,
@@ -104,7 +105,7 @@ void scan_oneshot(
     case os_up_queued:
     {
         uint16_t elapsed = timer_elapsed(oskey->queued_time);
-        if (elapsed >= ONESHOT_TIMEOUT)
+        if (elapsed >= ONESHOT_ACTIVE_TIMEOUT)
         {
             oskey->oneshot_state = os_up_unqueued;
             oskey->queued_time = 0;
@@ -116,7 +117,7 @@ void scan_oneshot(
     case os_down_unused:
     {
         uint16_t elapsed = timer_elapsed(oskey->down_unused_time);
-        if (elapsed >= ONESHOT_TIMEOUT)
+        if (elapsed >= ONESHOT_UNUSED_TIMEOUT)
         {
             oskey->oneshot_state = os_down_used;
             oskey->down_unused_time = 0;
@@ -242,7 +243,7 @@ void scan_oneshot_layer(
     case os_up_queued:
     {
         uint16_t elapsed = timer_elapsed(oskey->queued_time);
-        if (elapsed >= ONESHOT_TIMEOUT)
+        if (elapsed >= ONESHOT_ACTIVE_TIMEOUT)
         {
             oskey->oneshot_state = os_up_unqueued;
             oskey->queued_time = 0;
@@ -254,7 +255,7 @@ void scan_oneshot_layer(
     case os_down_unused:
     {
         uint16_t elapsed = timer_elapsed(oskey->down_unused_time);
-        if (elapsed >= ONESHOT_TIMEOUT)
+        if (elapsed >= ONESHOT_UNUSED_TIMEOUT)
         {
             oskey->oneshot_state = os_down_used;
             oskey->down_unused_time = 0;
