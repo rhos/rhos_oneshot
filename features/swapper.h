@@ -18,3 +18,10 @@ void update_swapper(
     uint16_t keycode,
     keyrecord_t *record
 );
+
+void unregister_swapper(
+    bool *active,
+    uint16_t cmdish,
+    uint16_t tabish,
+    uint16_t trigger
+);

@@ -4,20 +4,22 @@
 
 void send_extra_grp_toggle(void) {
   uint8_t mods = get_mods();
-  // unregister_mods(mods & MOD_MASK_CSA);
+  unregister_mods(mods & MOD_MASK_CSA);
 
-  if (mods & MOD_BIT(KC_LGUI))
+  if ((mods & MOD_BIT(KC_LGUI)) != 0)
   {
+    dprintf("GRPTOGGLE: %d no mods \n", mods);
     tap_code(KC_SPC);
   }
   else
   {
+    dprintf("GRPTOGGLE: %d mods \n", mods);
     register_code(KC_LGUI);
     tap_code(KC_SPC);
     unregister_code(KC_LGUI);
   }
 
-  // register_mods(mods & MOD_MASK_CSA);
+  register_mods(mods & MOD_MASK_CSA);
 }
 
 static uint8_t in_extra_layer = 0;

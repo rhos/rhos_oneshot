@@ -59,7 +59,27 @@ void oled_render_layer_state(void) {
         oled_write_ln_P(PSTR("ERROR"), false);
         break;
     }
-    
+
+    return;
+    // oled_write_ln_P(PSTR(""), false);
+
+    // uint8_t cur_layer = get_highest_layer(layer_state);
+    // if (cur_layer == 0)
+    // {
+    //     oled_write_ln_P(PSTR(""), false);
+    // }
+    // else
+    // {
+    //     switch(cur_layer)
+    //     {
+    //     #define LAYER_X(LAYER, STRING) case U_##LAYER: oled_write_ln_P(PSTR(STRING), false); break;
+    //     LAYER_LIST
+    //     #undef LAYER_X
+    //     default:
+    //         oled_write_ln_P(PSTR("ERROR"), false);
+    //         break;
+    //     }
+    // }
 }
 
 void oled_render_slave(void) {

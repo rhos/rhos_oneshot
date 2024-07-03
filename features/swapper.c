@@ -24,3 +24,17 @@ void update_swapper(
         *active = false;
     }
 }
+
+void unregister_swapper(
+    bool *active,
+    uint16_t cmdish,
+    uint16_t tabish,
+    uint16_t trigger
+) {
+    if(*active)
+    {
+        *active = false;
+        unregister_code(tabish);
+        unregister_code(cmdish);
+    }
+}

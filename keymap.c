@@ -109,18 +109,10 @@ layer_state_t default_layer_state_set_user(layer_state_t state){
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   dprintf("LAYERSTATE: %d \n", state);
+  unregister_swapper(&sw_alt_active, KC_LALT, KC_TAB, SW_ALT);
+  unregister_swapper(&sw_ctrl_active, KC_LCTL, KC_TAB, SW_CTL);
+  
   state = update_extra_grp(state);
-
-  if (sw_alt_active)
-  {
-    sw_alt_active = false;
-    unregister_code(KC_LALT);
-  }
-  if (sw_ctrl_active)
-  {
-    sw_ctrl_active = false;
-    unregister_code(KC_LCTL);
-  }
 
   return update_tri_layer_state(state,  U_NAV, U_NUM, U_FUN);
 }
@@ -169,6 +161,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   #undef OSMOD_X
 
   switch (keycode) {
+  case OS_GRP:
+    if (record->event.pressed) {
+      send_extra_grp_toggle();
+    }
+    break;
   case OS_LSFT:
   case KC_LEFT:
   case KC_RIGHT:
